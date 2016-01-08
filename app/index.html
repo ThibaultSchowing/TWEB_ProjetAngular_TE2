@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -46,9 +47,9 @@
       </div>
     </div>
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
+
+    <div ng-view class="container"></div>
+
 
     <div class="footer">
       <div class="container">
@@ -79,6 +80,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -90,6 +93,9 @@
         <script src="scripts/controllers/stats.js"></script>
         <script src="scripts/services/userfactory.js"></script>
         <script src="scripts/services/repofactory.js"></script>
+        <script src="scripts/services/statscommitactivityfactory.js"></script>
+        <script src="scripts/services/addanddelfactory.js"></script>
+        <script src="scripts/services/statsparticipationfactory.js"></script>
         <!-- endbuild -->
 </body>
 </html>

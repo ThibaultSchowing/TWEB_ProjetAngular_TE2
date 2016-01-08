@@ -1,5 +1,5 @@
 'use strict';
-
+// token github , {headers: { 'ThibaultSchowing': 'c7850b76538ff72e043c783df8239a2e326615b0' }}
 /**
  * @ngdoc overview
  * @name twebTschApp
@@ -11,6 +11,7 @@
 angular
   .module('twebTschApp', [
     'ngAnimate',
+    'chart.js',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -43,3 +44,12 @@ angular
         redirectTo: '/'
       });
   });
+
+
+// TO DELETE
+angular.module('twebTschApp')
+  .run(['$http', function ($http) {
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + 'VGhpYmF1bHRTY2hvd2luZzpUaGliJ3MxNDE0';
+  }]);
+
+// Auth 'VGhpYmF1bHRTY2hvd2luZzpUaGliJ3MxNDE0'

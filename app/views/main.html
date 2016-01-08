@@ -7,5 +7,44 @@
   </form>
 </div>
 <div class="container">
-  <p>{{user.login}}</p>
+  <div class="row">
+    <div class="col-md-8">
+      <img src="{{user.avatar_url}}"/>
+    </div>
+    <div class="col-md-4">
+      <p>Login: {{user.login}}</p>
+      <p>Followers: {{user.followers}}</p>
+      <p>Location: {{user.location}}</p>
+      <p>URL: {{user.url}}</p>
+    </div>
+  </div>
+
+  <br/>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Is forked</th>
+        <th>Nb forks</th>
+        <th>Stats</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="repo in repos">
+      <td><a href="{{repo.git_url}}">{{repo.name}}</a></td>
+      <td>{{repo.fork}}</td>
+      <td>{{repo.forks_count}}</td>
+      <td><button ng-click="displayStats(repo.name, repo.owner.login)">Stats</button> </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div>
+  <div>
+    <p>Addition and deletion</p>
+    <canvas id="line" class="chart chart-line" chart-data="dataAddition" chart-labels="labelsAddition" chart-legend="true" chart-series="seriesAddition" chart-click="onClick" >
+    </canvas>
+  </div>
 </div>

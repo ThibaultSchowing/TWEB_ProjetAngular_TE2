@@ -8,20 +8,75 @@
  * Controller of the twebTschApp
  */
 angular.module('twebTschApp')
-  .controller('MainCtrl', ['$scope', 'userFactory','repoFactory', function ($scope, userFactory, repoFactory) {
-    $scope.submit = function(){
-      if($scope.text){
-        userFactory.get({userId: $scope.text}, function(user){
+  .controller('MainCtrl', ['$scope', 'userFactory', 'repoFactory','statsParticipationFactory', 'statsCommitActivityFactory', 'addAndDelFactory', function ($scope, userFactory, repoFactory,statsParticipationFactory, statsCommitActivityFactory, addAndDelFactory) {
+    $scope.submit = function () {
+      if ($scope.text) {
+        // On reçoit un objet, on peut utiliser get
+        userFactory.get({userId: $scope.text}, function (user) {
+          // Si user existe, on peut chercher ses repos
+          if (user) {
+            console.log('Utilisateur', user);
+            $scope.user = user;
+            // étant donné qu'on reçoit un tableau d'objet, il faut utiliser query au lieu de get.
+            repoFactory.query({userId: $scope.text}, function (repos) {
+              console.log('Liste des repos', repos);
+              $scope.repos = repos;
+            });
+          }
+        }, function (error) {
+          console.log('Erreur get users !!! User dont existe !!');
 
-          console.log('Utilisateur' , user);
-          $scope.user = user;
-
-          repoFactory.query({userId: $scope.text}, function(repos){
-            console.log('Liste des repos', repos);
-            $scope.repos = repos;
-          });
+          $scope.user = null;
+          $scope.repos = null;
 
         });
       }
     };
-  }]);
+
+    $scope.displayStats = function (nameRepo, owner) {
+      // Get stats informations
+      console.log('Parameters display stats: ', nameRepo, owner);
+
+      //Commit Activity
+      statsCommitActivityFactory.query({owner: owner, repo: nameRepo}, function (activity) {
+        $scope.commitActivity = activity;
+        console.log('Activity');
+        console.log(activity);
+
+      });
+
+      //Addition and deletion per week
+      addAndDelFactory.query({owner: owner, repo: nameRepo}, function (frequency) {
+        $scope.frequency = frequency;
+        console.log('Frequency');
+        console.log(frequency);
+
+        var additions = [];
+        var deletions = [];
+        var labelsFrequency = [];
+        angular.forEach(frequency,function(data){
+          //timestamp
+          var date = new Date(data[0] * 1000);
+          var n = date.toDateString();
+
+          labelsFrequency.push(n);
+          additions.push(data[1]);
+          deletions.push(data[2]);
+        });
+        $scope.seriesAddition = ['Addition', 'Deletion'];
+        $scope.dataAddition = [additions,deletions];
+        $scope.labelsAddition = labelsFrequency;
+
+      });
+
+      //Participation
+      statsParticipationFactory.get({owner: owner, repo: nameRepo}, function (participation) {
+        $scope.participation = participation;
+        console.log('Participation');
+        console.log(participation);
+      });
+    }
+
+
+  }
+  ]);

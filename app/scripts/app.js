@@ -49,7 +49,8 @@ angular
 // TO DELETE
 angular.module('twebTschApp')
   .run(['$http', function ($http) {
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + 'VGhpYmF1bHRTY2hvd2luZzpUaGliJ3MxNDE0';
+    $http.defaults.headers.common['Authorization'] = 'Token ' + '702be16ed42305525086fa5e9822b65ded188d6a';
   }]);
 
-// Auth 'VGhpYmF1bHRTY2hvd2luZzpUaGliJ3MxNDE0'
+// Basic 'VGhpYmF1bHRTY2hvd2luZzpUaGliJ3MxNDE0'
+// Token 702be16ed42305525086fa5e9822b65ded188d6a

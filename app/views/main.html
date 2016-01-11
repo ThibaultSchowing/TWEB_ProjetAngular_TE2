@@ -8,10 +8,10 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <img src="{{user.avatar_url}}"/>
-    </div>
     <div class="col-md-4">
+      <img src="{{user.avatar_url}}" class="img-responsive img-rounded" alt="Avatar" height="100%" width="100%"/>
+    </div>
+    <div class="col-md-8">
       <p>Login: {{user.login}}</p>
       <p>Followers: {{user.followers}}</p>
       <p>Location: {{user.location}}</p>
@@ -42,9 +42,14 @@
 
 
 <div>
-  <div>
+  <div class="charts">
     <p>Addition and deletion</p>
     <canvas id="line" class="chart chart-line" chart-data="dataAddition" chart-labels="labelsAddition" chart-legend="true" chart-series="seriesAddition" chart-click="onClick" >
     </canvas>
+
+    <p>Weekly commit count participation</p>
+    <canvas id="bar" class="chart chart-bar" chart-data="dataParticipation" chart-labels="labelsParticipation" chart-series="seriesParticipation" >
+    </canvas>
+
   </div>
 </div>

@@ -7,6 +7,9 @@
  * # statsFactory
  * Factory in the twebTschApp.
  */
+
+// TO DELETE
+
 angular.module('twebTschApp')
   .factory('statsCommitActivityFactory',['$resource', function ($resource) {
     return $resource('https://api.github.com/repos/:owner/:repo/stats/commit_activity', {owner: '@owner', repo: '@repo'});

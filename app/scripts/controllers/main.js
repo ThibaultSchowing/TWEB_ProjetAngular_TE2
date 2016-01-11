@@ -8,7 +8,7 @@
  * Controller of the twebTschApp
  */
 angular.module('twebTschApp')
-  .controller('MainCtrl', ['$scope', 'userFactory', 'repoFactory','statsParticipationFactory', 'statsCommitActivityFactory', 'addAndDelFactory', function ($scope, userFactory, repoFactory,statsParticipationFactory, statsCommitActivityFactory, addAndDelFactory) {
+  .controller('MainCtrl', ['$scope', 'userFactory', 'repoFactory', 'statsParticipationFactory', 'statsCommitActivityFactory', 'addAndDelFactory', function ($scope, userFactory, repoFactory, statsParticipationFactory, statsCommitActivityFactory, addAndDelFactory) {
     $scope.submit = function () {
       if ($scope.text) {
         // On reçoit un objet, on peut utiliser get
@@ -33,50 +33,72 @@ angular.module('twebTschApp')
       }
     };
 
+    // Function when "stats" button is pushed
     $scope.displayStats = function (nameRepo, owner) {
-      // Get stats informations
-      console.log('Parameters display stats: ', nameRepo, owner);
 
-      //Commit Activity
-      statsCommitActivityFactory.query({owner: owner, repo: nameRepo}, function (activity) {
-        $scope.commitActivity = activity;
-        console.log('Activity');
-        console.log(activity);
+      var listSunday = [];
+      for (var httpBruteForce = 0; httpBruteForce < 4; httpBruteForce++) {
+        console.log('Brute-Force loop: ' + httpBruteForce);
 
-      });
+        // Get stats informations
+        console.log('Parameters display stats: ', nameRepo, owner);
 
-      //Addition and deletion per week
-      addAndDelFactory.query({owner: owner, repo: nameRepo}, function (frequency) {
-        $scope.frequency = frequency;
-        console.log('Frequency');
-        console.log(frequency);
+        /*//Commit Activity TO DELETE
+        statsCommitActivityFactory.query({owner: owner, repo: nameRepo}, function (activity) {
+          $scope.commitActivity = activity;
+          console.log('Activity');
+          console.log(activity);
 
-        var additions = [];
-        var deletions = [];
-        var labelsFrequency = [];
-        angular.forEach(frequency,function(data){
-          //timestamp
-          var date = new Date(data[0] * 1000);
-          var n = date.toDateString();
+        });*/
 
-          labelsFrequency.push(n);
-          additions.push(data[1]);
-          deletions.push(data[2]);
+        //Addition and deletion per week
+        addAndDelFactory.query({owner: owner, repo: nameRepo}, function (frequency) {
+          $scope.frequency = frequency;
+          console.log('Frequency');
+          console.log(frequency);
+
+          var additions = [];
+          var deletions = [];
+          var labelsFrequency = [];
+          angular.forEach(frequency, function (data) {
+            //timestamp
+            var date = new Date(data[0] * 1000);
+            var n = date.toDateString();
+
+            labelsFrequency.push(n);
+            additions.push(data[1]);
+            deletions.push(data[2]);
+          });
+
+          // We'll use this table in other graphs.
+          listSunday = labelsFrequency;
+          $scope.seriesAddition = ['Addition', 'Deletion'];
+          $scope.dataAddition = [additions, deletions];
+          $scope.labelsAddition = labelsFrequency;
+
         });
-        $scope.seriesAddition = ['Addition', 'Deletion'];
-        $scope.dataAddition = [additions,deletions];
-        $scope.labelsAddition = labelsFrequency;
 
-      });
+        //Participation weekly commit count 52 last weeks
+        statsParticipationFactory.get({owner: owner, repo: nameRepo}, function (participation) {
+          $scope.participation = participation;
+          console.log('Participation');
+          console.log(participation);
 
-      //Participation
-      statsParticipationFactory.get({owner: owner, repo: nameRepo}, function (participation) {
-        $scope.participation = participation;
-        console.log('Participation');
-        console.log(participation);
-      });
+          var tabAll = participation.all;
+          var tabOwner = participation.owner;
+
+
+          $scope.seriesParticipation = ['All', 'Owner'];
+          $scope.labelsParticipation = listSunday;
+          $scope.dataParticipation = [tabAll, tabOwner];
+        });
+
+
+        //
+
+
+      }
     }
-
 
   }
   ]);

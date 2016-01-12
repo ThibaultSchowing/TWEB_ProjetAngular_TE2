@@ -1,55 +1,87 @@
-
 <div class="row marketing">
-  <h4>Searche for github user</h4>
+
+  <h4>Search for Github user</h4>
+
   <form ng-submit="submit()">
     <input type="search" ng-model="text" name="UserSearch">
-    <input type="submit" id="submit" value="Submit" />
+    <input type="submit" id="submit" value="Submit"/>
   </form>
 </div>
 <div class="container">
+  <h1>
+    <a href="{{user.url}}">
+      <span class="label label-primary">{{user.name}}</span>
+    </a>
+  </h1>
+  <br/>
   <div class="row">
     <div class="col-md-4">
       <img src="{{user.avatar_url}}" class="img-responsive img-rounded" alt="Avatar" height="100%" width="100%"/>
     </div>
     <div class="col-md-8">
-      <p>Login: {{user.login}}</p>
-      <p>Followers: {{user.followers}}</p>
-      <p>Location: {{user.location}}</p>
-      <p>URL: {{user.url}}</p>
+      <table class="table table-striped">
+        <tr>
+          <td>Login</td>
+          <td>{{user.login}}</td>
+        </tr>
+        <tr>
+          <td>Followers</td>
+          <td>{{user.followers}}</td>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td>{{user.location}}</td>
+        </tr>
+        <tr>
+          <td>URL</td>
+          <td>{{user.url}}</td>
+        </tr>
+     </table>
     </div>
   </div>
-
+<!-- Repositories display -->
+  <br/>
+  <h2>Repositories</h2>
   <br/>
   <table class="table table-striped">
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>Is forked</th>
-        <th>Nb forks</th>
-        <th>Stats</th>
-      </tr>
+    <tr>
+      <th>Name</th>
+      <th>Is forked</th>
+      <th>Nb forks</th>
+      <th>Stats</th>
+    </tr>
     </thead>
     <tbody>
     <tr ng-repeat="repo in repos">
       <td><a href="{{repo.git_url}}">{{repo.name}}</a></td>
       <td>{{repo.fork}}</td>
       <td>{{repo.forks_count}}</td>
-      <td><button ng-click="displayStats(repo.name, repo.owner.login)">Stats</button> </td>
+      <td>
+        <button class="btn btn-info" ng-click="displayStats(repo.name, repo.owner.login)">Stats</button>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
-
-
+<!-- Graphics display -->
 <div>
-  <div class="charts">
-    <p>Addition and deletion</p>
-    <canvas id="line" class="chart chart-line" chart-data="dataAddition" chart-labels="labelsAddition" chart-legend="true" chart-series="seriesAddition" chart-click="onClick" >
+  <div class="charts" id="charts" ng-show="graphVisibility">
+    <h3>Addition and deletion</h3>
+    <canvas id="line" class="chart chart-line" chart-data="dataAddition" chart-labels="labelsAddition"
+            chart-legend="true" chart-series="seriesAddition" chart-click="onClick">
     </canvas>
 
-    <p>Weekly commit count participation</p>
-    <canvas id="bar" class="chart chart-bar" chart-data="dataParticipation" chart-labels="labelsParticipation" chart-series="seriesParticipation" >
+    <h3>Weekly commit count participation</h3>
+    <canvas id="bar" class="chart chart-bar" chart-data="dataParticipation" chart-labels="labelsParticipation"
+            chart-series="seriesParticipation">
     </canvas>
 
+    <h3>Commit activity of the current week</h3>
+    <canvas id="bar" class="chart chart-bar"
+            chart-data="dataActivity"
+            chart-labels="labelsActivity"
+            chart-series="seriesActivity">
+    </canvas>
   </div>
 </div>

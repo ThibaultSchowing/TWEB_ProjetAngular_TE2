@@ -46,11 +46,11 @@ angular
   });
 
 
-// TO DELETE
 angular.module('twebTschApp')
   .run(['$http', function ($http) {
-    $http.defaults.headers.common['Authorization'] = 'Token ' + '702be16ed42305525086fa5e9822b65ded188d6a';
+    $http.defaults.headers.common['Authorization'] = 'Token ' + 'cf40de1ef3c96e5e721984e539af707b7daea838';
   }]);
 
-// Basic 'VGhpYmF1bHRTY2hvd2luZzpUaGliJ3MxNDE0'
+
 // Token 702be16ed42305525086fa5e9822b65ded188d6a
+// Token bis cf40de1ef3c96e5e721984e539af707b7daea838

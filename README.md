@@ -15,15 +15,32 @@ Développer une application AngularJS pour afficher du contenu obtenu via l'API 
 
 # Fonctionnalités de l'application
 
-L'application permettra d'obtenir des informations via l'API de Github sur des utilisateurs existants.
++ S'authentifier sur Github
++ Obtenir des informations sur un utilisateur
++ Obtenir la liste des dépots publiques de l'utilisateur
++ Obtenir différentes statistiques sur ces dépots
+  * Nombre d'additions et de suppressions en fonction du temps
+  * Nombre de commits par semaine
+  * Nombre de commits pour la semaine en cour
 
-...
 
-Les statistiques seront affichées grâce à chartJS.
+# Technologies utilisées
 
-# Réalisation de l'application
++ AngularJS
++ Node.js
++ Chart.js
++ Bower
++ Grunt
++ Express
++ Yeoman
++ Twitter Bootstrap
 
-...
+# Utilisation de l'API de Github
+
+Lorsqu'on entre le nom d'un utilisateur Github, un premier appel est effectué sur *https://api.github.com/users/:userId*. Nous obtenons les informations visibles sur l'image ci-dessous:
+
+![Profile informations](reportIMG/user2.png)
+
 
 
 

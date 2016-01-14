@@ -78,6 +78,7 @@ L'application génère plusieurs erreurs et les données sont manquantes. Pour p
 il faut cliquer plusieurs fois (généralement un maximum de 4) afin que les données soient retournées correctement.
 
 # Auto-génèré par Yeoman
+Laissé à titre informatif:
 
 # tweb-tsch
 

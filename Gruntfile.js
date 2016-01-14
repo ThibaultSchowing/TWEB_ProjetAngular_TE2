@@ -514,7 +514,7 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  /*grunt.registerTask('heroku:production', [
+  grunt.registerTask('heroku:production', [
     'bower:install',
     'build'
   ]);
@@ -525,5 +525,5 @@ module.exports = function (grunt) {
         //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
       }
     }
-  });*/
+  });
 };

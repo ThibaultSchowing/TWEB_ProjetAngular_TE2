@@ -42,14 +42,14 @@ Développer une application AngularJS pour afficher du contenu obtenu via l'API 
 Lorsqu'on entre le nom d'un utilisateur Github, un premier appel est effectué sur *https://api.github.com/users/:userId*. 
 Nous obtenons les informations visibles sur l'image ci-dessous:
 
-![Profile informations](reportIMG/user2.png)
+![Profile informations][reportIMG/user2.png]
 
 ## Récupération des dépots de l'utilisateur
 
 L'appel suivant est effectué sur *https://api.github.com/users/:userId/repos* afin de récupérer les dépots publiques de 
 l'utilisateur qui seront affichés en dessous de ses informations personnelles.
 
-![Repos informations](reportIMG/repos.png)
+![Repos informations][reportIMG/repos.png]
 
 ## Récupérations des données d'un dépot et génération des graphiques
 
@@ -58,15 +58,15 @@ s'affichent comme ci-dessous.
 
 ### Nombre d'additions et de suppressions au cours du temps
 
-![Graph 1](reportIMG/graph1.png)
+![Graph 1][reportIMG/graph1.png]
 
 ### Nombre de commits par semaine
 
-![Graph 2](reportIMG/graph2.png)
+![Graph 2][reportIMG/graph2.png]
 
 ### Nombre de commits pour la semaine courante
 
-![Graph 3](reportIMG/graph3.png)
+![Graph 3][reportIMG/graph3.png]
 
 
 # Problèmes connus

@@ -111,6 +111,16 @@ Parfois, l'API de Github retourne un status 202 - Authorized mais ne donne aucun
 L'application génère plusieurs erreurs et les données sont manquantes. Pour palier provisoirement à ce problèmes,
 il faut cliquer plusieurs fois (généralement un maximum de 4) afin que les données soient retournées correctement.
 
+## Liens "unsafe"
+
+Les liens des repos d'un utilisateur sont préfixés par un "unsafe:git" et sont donc inutilisables.
+
+# Sources
+Source: https://github.com/yeoman/generator-angular
+Source: http://pierrebaron.fr/blog/deploy-yeoman-angular-app-heroku/
+
+Merci à Michaël Berthouzoz pour l'aide dans la prise en main d'IntelliJ IDEA
+
 # Auto-génèré par Yeoman
 Laissé à titre informatif:
 
@@ -126,9 +136,3 @@ Run `grunt` for building and `grunt serve` for preview.
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
-
-# Sources
-Source: https://github.com/yeoman/generator-angular
-Source: http://pierrebaron.fr/blog/deploy-yeoman-angular-app-heroku/
-
-Merci à Michaël Berthouzoz pour l'aide dans la prise en main d'IntelliJ IDEA

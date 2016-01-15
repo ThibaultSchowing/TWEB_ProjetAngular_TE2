@@ -1,5 +1,11 @@
 # TWEB Travail pratique avec AngularJS
 
+## Lien Heroku
+
+Lien de l'application déployée sur Heroku:
+> https://tweb-te2-githubapi.herokuapp.com/
+
+
 ## Objectifs du travail
 
 Développer une application AngularJS pour afficher du contenu obtenu via l'API GitHub
@@ -35,7 +41,35 @@ Développer une application AngularJS pour afficher du contenu obtenu via l'API 
 + Yeoman
 + Twitter Bootstrap
 
-# Appel de l'API de Github
+# Structure du projet
+
+A la racine, le fichier web.js contient le minimum reques par Heroku niveau serveur.
+Les autres fichiers intéressants sont situés dans /app.
+
+/app
+ index.html: contient la base du html
+
+### Vues
+
+/app/views
+ main.html: contient tout le HTML qui sera modifié par AngularJS (user, repos et stats)
+/app/scripts
+  app.js: routeProvider, Modules et ajout d'entête HTTP
+
+### Ressources
+
+/app/scripts/services
+  repofactory.js
+  statscommitactivityfactory.js
+  statsparticipationfactory.js
+  userfactory.js
+
+### Controleur principal
+
+/app/scripts/controllers
+  main.js: script Angular principal, execute les appels sur l'API et formate les données avant de les envoyéer au Scope.
+
+# Appel sur l'API de Github
 
 ## Récupération des données de l'utilisateur
 
@@ -96,3 +130,5 @@ Running `grunt test` will run the unit tests with karma.
 # Sources
 Source: https://github.com/yeoman/generator-angular
 Source: http://pierrebaron.fr/blog/deploy-yeoman-angular-app-heroku/
+
+Merci à Michaël Berthouzoz pour l'aide dans la prise en main d'IntelliJ IDEA

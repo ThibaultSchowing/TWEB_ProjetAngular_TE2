@@ -1,5 +1,4 @@
 'use strict';
-// token github , {headers: { 'ThibaultSchowing': 'c7850b76538ff72e043c783df8239a2e326615b0' }}
 /**
  * @ngdoc overview
  * @name twebTschApp
@@ -26,21 +25,6 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
-      })
-      .when('/user', {
-        templateUrl: 'views/user.html',
-        controller: 'UserCtrl',
-        controllerAs: 'user'
-      })
-      .when('/repo', {
-        templateUrl: 'views/repo.html',
-        controller: 'RepoCtrl',
-        controllerAs: 'repo'
-      })
-      .when('/stats', {
-        templateUrl: 'views/stats.html',
-        controller: 'StatsCtrl',
-        controllerAs: 'stats'
       })
       .otherwise({
         redirectTo: '/'

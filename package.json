@@ -37,7 +37,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "node web.js"
   },
   "dependencies": {
     "express": "^4.13.3",

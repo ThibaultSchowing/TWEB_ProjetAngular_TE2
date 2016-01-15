@@ -1,4 +1,4 @@
-// Generated on 2016-01-07 using generator-angular 0.15.1
+// Generated on 2015-12-30 using generator-angular 0.14.0
 'use strict';
 
 // # Globbing
@@ -28,13 +28,6 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
-    bower: {
-      install: {
-        //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
-      }
-    },
-
     // Project settings
     yeoman: appConfig,
 
@@ -54,6 +47,10 @@ module.exports = function (grunt) {
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
+      },
+      styles: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+        tasks: ['newer:copy:styles', 'postcss']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -206,8 +203,7 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
-      }
-      ,
+      },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
@@ -215,45 +211,16 @@ module.exports = function (grunt) {
         fileTypes:{
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       }
     },
-
-    //// Compiles Sass to CSS and generates necessary files if requested
-    //compass: {
-    //  options: {
-    //    sassDir: '<%= yeoman.app %>/styles',
-    //    cssDir: '.tmp/styles',
-    //    generatedImagesDir: '.tmp/images/generated',
-    //    imagesDir: '<%= yeoman.app %>/images',
-    //    javascriptsDir: '<%= yeoman.app %>/scripts',
-    //    fontsDir: '<%= yeoman.app %>/styles/fonts',
-    //    importPath: './bower_components',
-    //    httpImagesPath: '/images',
-    //    httpGeneratedImagesPath: '/images/generated',
-    //    httpFontsPath: '/styles/fonts',
-    //    relativeAssets: false,
-    //    assetCacheBuster: false,
-    //    raw: 'Sass::Script::Number.precision = 10\n'
-    //  },
-    //  dist: {
-    //    options: {
-    //      generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-    //    }
-    //  },
-    //  server: {
-    //    options: {
-    //      sourcemap: true
-    //    }
-    //  }
-    //},
 
     // Renames files for browser caching purposes
     filerev: {
@@ -371,7 +338,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'twebTschApp',
+          module: 'anguGHApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -381,6 +348,18 @@ module.exports = function (grunt) {
       }
     },
 
+    // ng-annotate tries to make the code safe for minification automatically
+    // by using the Angular long form for dependency injection.
+    ngAnnotate: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/concat/scripts',
+          src: '*.js',
+          dest: '.tmp/concat/scripts'
+        }]
+      }
+    },
 
     // Replace Google CDN references
     cdnify: {
@@ -413,6 +392,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/flat-ui/dist',
+          src: 'fonts/*/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -425,26 +409,31 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      //server: [
-      //  'compass:server'
-      //],
-      //test: [
-      //  'compass'
-      //],
+      server: [
+        'copy:styles'
+      ],
+      test: [
+        'copy:styles'
+      ],
       dist: [
-        //'compass:dist',
+        'copy:styles',
         'imagemin',
         'svgmin'
       ]
     },
 
     // Test settings
-    //karma: {
-    //  unit: {
-    //    configFile: 'test/karma.conf.js',
-    //    singleRun: true
-    //  }
-    //}
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true
+      }
+    },
+    bower: {
+      install: {
+        //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
+      }
+    }
   });
 
 
@@ -506,5 +495,4 @@ module.exports = function (grunt) {
     'bower:install',
     'build'
   ]);
-
 };

@@ -9,7 +9,7 @@
 </div>
 <div class="container">
   <h1>
-    <a href="{{user.url}}">
+    <a ng-href="{{user.url}}">
       <span class="label label-primary">{{user.name}}</span>
     </a>
   </h1>
@@ -54,7 +54,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="repo in repos">
-      <td><a href="{{repo.git_url}}">{{repo.name}}</a></td>
+      <td><a ng-href="{{repo.git_url}}">{{repo.name}}</a></td>
       <td>{{repo.fork}}</td>
       <td>{{repo.forks_count}}</td>
       <td>

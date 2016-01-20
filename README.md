@@ -108,8 +108,10 @@ s'affichent comme ci-dessous.
 ## Status 202
 
 Parfois, l'API de Github retourne un status 202 - Authorized mais ne donne aucune données.
-L'application génère plusieurs erreurs et les données sont manquantes. Pour palier provisoirement à ce problèmes,
-il faut cliquer plusieurs fois (généralement un maximum de 4) afin que les données soient retournées correctement.
+L'application génère plusieurs erreurs et les données sont manquantes. Pour palier à ce problèmes,
+il faut cliquer plusieurs fois (généralement un maximum de 4 ou 5) afin que les données soient retournées correctement.
+La raison est que github dois générer les données et renvoi un code 202 pour dire que les données seront bientôt disponibles pendant leur génération.
+Pour réussir à faire fonctionner l'application sans devoir cliquer à plusieurs reprises sur les boutons de génération des stats, il faudrait changer les ressources en http et effectuer la requête jusqu'à ce que la réponse aie le contenu demandé.
 
 ## Liens "unsafe"
 

@@ -29,7 +29,16 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .config( [
+    '$compileProvider',
+    function( $compileProvider )
+    {
+      // Tentative de résoudre le problème des liens "unsafe" -> it's not very effective
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|http|blob:chrome-extension):/);
+        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+    }
+]);
 
 
 angular.module('twebTschApp')
